@@ -14,5 +14,8 @@
   <body>
     <div id="root"></div>
     <%= yield %>
+    <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
+
+    <p><%= t('activerecord.models.user') %></p>
   </body>
 </html>
