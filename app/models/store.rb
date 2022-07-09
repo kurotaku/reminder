@@ -18,5 +18,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Store < ApplicationRecord
+  include Uniqueable
+  
   belongs_to :user
 end
