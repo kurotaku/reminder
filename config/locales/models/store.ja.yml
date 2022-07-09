@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      store: 店舗
+    attributes:
+      store:
+        name: 店舗名
+        user: ユーザー
+        user_id: ユーザー
