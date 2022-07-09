@@ -2,7 +2,7 @@ Rails.application.config.generators do |g|
   g.stylesheets false
   g.javascripts false
   g.helper false
-  g.decorator true
+  g.decorator false
   g.skip_routes true
   g.test_framework :rspec,
     fixtures: true,
