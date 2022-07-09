@@ -8,8 +8,22 @@ ApplicationRecord.transaction do
   ##########################
   p '=== User ==='
 
-  user = User.find_or_initialize_by(name: '山田太郎', account_id: 'tyamada',email: ENV.fetch('DEMO_USER_EMAIL', 'test@test.com'))
-  user.password = 'password'
-  user.skip_confirmation!
-  user.save!
+  test_user = User.find_or_initialize_by(name: '山田太郎', account_id: 'tyamada',email: ENV.fetch('DEMO_USER_EMAIL', 'test@test.com'))
+  test_user.password = 'password'
+  test_user.skip_confirmation!
+  test_user.save!
+
+  ##########################
+  # 店舗
+  ##########################
+  p '=== Store ==='
+
+  stores = [
+    {user: test_user, name: 'サンプル店舗'},
+  ]
+
+  stores.each do |store|
+    object = Store.find_or_initialize_by(store)
+    object.save!
+  end
 end
