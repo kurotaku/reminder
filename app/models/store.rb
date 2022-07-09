@@ -19,6 +19,6 @@
 #
 class Store < ApplicationRecord
   include Uniqueable
-  
+
   belongs_to :user
 end

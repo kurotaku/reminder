@@ -20,7 +20,7 @@
 FactoryBot.define do
   factory :store do
     user { nil }
-    name { "MyString" }
-    ulid { "MyString" }
+    name { 'MyString' }
+    ulid { 'MyString' }
   end
 end
