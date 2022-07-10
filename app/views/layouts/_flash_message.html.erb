@@ -1,0 +1,20 @@
+<% 
+success_case = ['success', 'info', 'warning', 'notice']
+danger_case = ['error', 'alert']
+icon_class = 'icon-fill_check'
+flash.each do |message_type, message|  
+  icon_class = 'icon-fill_close' if danger_case.include?(message_type)
+  if message != nil %>
+    <div id="flashMessage" class="flash-message <%= message_type %>">
+      <i class="<%= icon_class %> mr-2"></i>
+      <div class=""><%= simple_format message %></div>
+      <i class="icon-close close-btn ml-auto" onclick="closeFlashMessage()"></i>
+    </div>
+  <% end %>
+<% end %>
+
+<script>
+  function closeFlashMessage(){
+    document.getElementById('flashMessage').style.display = 'none';
+  }
+</script>

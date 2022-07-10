@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title><%= content_for?(:html_title) ? yield(:html_title) : 'Reminder' %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+  </head>
+
+  <body id="body" class="menu-open">
+    <%= render 'layouts/flash_message' %>
+    <div class="body-inner">
+      <nav class="main-menu">
+        <figure class="user-info">
+          <div class="user-icon mr-3"><i class="icon-user"></i></div>
+          <div>
+            <label class="user-name"><%= current_user.name %></label>
+          </div>
+        </figure>
+        
+        <ul class="icon-link-list dark ml-1">
+          <li class="<%= 'current' if controller_path == 'sv_page/dashboard' %>"><%= link_to content_tag(:i, '', class: 'icon-dashboard') + t('menu.dashboard'), root_path, class: 'link' %></li>
+        </ul>
+
+        <p class="copyright">&copy;Reminder</p>
+      </nav>
+
+      <main class="main-col">
+        <i class="icon-menu menu-btn" onclick="menuToggle()"></i>
+        <script>
+          document.addEventListener("turbolinks:load", function(){
+            if(window.innerWidth < 768){
+              document.getElementById('body').classList.remove('menu-open');
+            }
+          })
+          function menuToggle(){
+            document.getElementById('body').classList.toggle('menu-open');
+          }
+        </script>
+
+        <%= yield %>
+
+      </main>
+        
+    </div>
+  </body>
+</html>
