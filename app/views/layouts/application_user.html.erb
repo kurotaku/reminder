@@ -32,7 +32,7 @@
         </figure>
         
         <ul class="icon-link-list dark ml-1">
-          <li class="<%= 'current' if controller_path == 'sv_page/dashboard' %>"><%= link_to content_tag(:i, '', class: 'icon-dashboard') + t('menu.dashboard'), root_path, class: 'link' %></li>
+          <li class="<%= 'current' if controller_path == 'user_page/stores' %>"><%= link_to content_tag(:i, '', class: 'icon-store') + t('activerecord.models.store') + '管理', user_page_stores_path, class: 'link' %></li>
         </ul>
 
         <p class="copyright">&copy;Reminder</p>
