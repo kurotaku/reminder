@@ -17,6 +17,7 @@ gem "puma", "~> 5.0"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"
+gem 'cssbundling-rails'
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
@@ -50,6 +51,7 @@ gem 'devise-i18n-views'
 gem 'dotenv-rails'
 gem 'draper'
 gem 'enum_help'
+gem 'foreman'
 gem 'kaminari'
 gem 'phonelib'
 gem 'rails-i18n'

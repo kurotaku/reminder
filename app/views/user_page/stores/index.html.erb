@@ -1,2 +1,30 @@
-<h1>UserPage::Stores#index</h1>
-<p>Find me in app/views/user_page/stores/index.html.erb</p>
+<nav class="main-header">
+  <h1 class="main-header-title"><%= t('activerecord.models.store') %></h1>
+</nav>
+
+<div class="main-contents">
+  <div class="main-contents-title-wrap">
+    <h2 class="main-contents-title mb-0"><%= t('activerecord.models.store') %>一覧</h2>
+    <%= link_to t('common.new'), new_user_page_store_path, class: 'btn btn-sm btn-primary ml-auto' %>
+  </div>
+
+  <div class="box box-bordered mb-2">
+    <table class="table-default table-striped">
+      <thead>
+        <th><%= t('activerecord.attributes.store.name') %></th>
+      </thead>
+      <tbody>
+        <% @stores.each do |store| %>
+          <tr>
+            <td><%= link_to store.name, user_page_store_path(store), class: 'btn btn-link' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="d-flex">
+    <%#= paginate @stores %>
+  </div>
+
+</div>
