@@ -15,8 +15,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_09_065910) do
     t.bigint "user_id", null: false
     t.string "name"
     t.string "ulid"
+    t.string "phone"
+    t.string "postcode"
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["id", "phone"], name: "index_stores_on_id_and_phone", unique: true
     t.index ["user_id"], name: "index_stores_on_user_id"
   end
 

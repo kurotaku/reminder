@@ -3,7 +3,10 @@
 # Table name: stores
 #
 #  id         :bigint           not null, primary key
+#  address    :string(255)
 #  name       :string(255)
+#  phone      :string(255)
+#  postcode   :string(255)
 #  ulid       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -11,7 +14,8 @@
 #
 # Indexes
 #
-#  index_stores_on_user_id  (user_id)
+#  index_stores_on_id_and_phone  (id,phone) UNIQUE
+#  index_stores_on_user_id       (user_id)
 #
 # Foreign Keys
 #
