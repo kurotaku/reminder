@@ -12,11 +12,17 @@
     <table class="table-default table-striped">
       <thead>
         <th><%= t('activerecord.attributes.store.name') %></th>
+        <th><%= t('activerecord.attributes.store.phone') %></th>
+        <th><%= t('activerecord.attributes.store.postcode') %></th>
+        <th><%= t('activerecord.attributes.store.address') %></th>
       </thead>
       <tbody>
         <% @stores.each do |store| %>
           <tr>
             <td><%= link_to store.name, user_page_store_path(store), class: 'btn btn-link' %></td>
+            <td><%= store.phone %></td>
+            <td><%= store.postcode %></td>
+            <td><%= store.address %></td>
           </tr>
         <% end %>
       </tbody>
