@@ -20,8 +20,8 @@
         <% @stores.each do |store| %>
           <tr>
             <td><%= link_to store.name, user_page_store_path(store), class: 'btn btn-link' %></td>
-            <td><%= store.phone %></td>
-            <td><%= store.postcode %></td>
+            <td><%= store.display_phone %></td>
+            <td><%= store.display_postcode %></td>
             <td><%= store.address %></td>
           </tr>
         <% end %>
