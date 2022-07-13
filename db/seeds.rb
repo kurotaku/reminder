@@ -19,7 +19,7 @@ ApplicationRecord.transaction do
   p '=== Store ==='
 
   stores = [
-    {user: test_user, name: 'サンプル店舗'},
+    {user: test_user, name: 'サンプル店舗', phone: '0312345678', postcode: '1560055', address: '東京都渋谷区神宮前1-1-1 サンプルハイツ101'},
   ]
 
   stores.each do |store|

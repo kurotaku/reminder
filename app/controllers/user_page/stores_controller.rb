@@ -4,13 +4,10 @@ module UserPage
       @stores = current_user.stores
     end
 
-    def new
-    end
-    
-    def create
-    end
+    def new; end
 
-    def show
-    end
+    def create; end
+
+    def show; end
   end
 end
