@@ -1,0 +1,23 @@
+<div class="box box-bordered mb-3">
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="form-group">
+    <%= f.label :name, class: 'form-label required' %>
+    <%= f.text_field :name, placeholder: 'サンプル神宮前店', class: 'form-control', required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :phone, class: 'form-label required' %>
+    <%= f.text_field :phone, placeholder: '0312345678', class: 'form-control', required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :postcode, class: 'form-label required' %>
+    <%= f.text_field :postcode, placeholder: '1500001', class: 'form-control half', required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :address, class: 'form-label required' %>
+    <%= f.text_field :address, placeholder: '東京都渋谷区神宮前1-2-3', class: 'form-control', required: true %>
+  </div>
+</div>

@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
   </head>
 
-  <body id="body" class="menu-open">
+  <body id="body">
     <%= render 'layouts/flash_message' %>
     <div class="body-inner">
       <nav class="main-menu">
@@ -36,7 +36,7 @@
         </figure>
         
         <ul class="icon-link-list dark ml-1">
-          <li class="<%= 'current' if controller_path == 'user_page/stores' %>"><%= link_to content_tag(:i, '', class: 'icon-store') + t('activerecord.models.store') + '管理', user_page_stores_path, class: 'link' %></li>
+          <li class="<%= 'current' if controller_path == 'user_page/stores' %>"><%= link_to content_tag(:i, '', class: 'icon-store') + content_tag(:label, t('activerecord.models.store') + '管理'), user_page_stores_path, class: 'link' %></li>
         </ul>
 
         <p class="copyright">&copy;Reminder</p>

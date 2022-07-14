@@ -363,12 +363,14 @@ input[type=checkbox].check-box {
       text-decoration: none;
       display: flex;
       align-items: center;
-      padding: 8px 32px;
+      padding: 8px;
       border-radius: 4px;
       i[class*="icon-"]::before{
         font-size: 32px;
         color: $text-dark;
-        margin-right: 8px;
+        width: 48px;
+        text-align: center;
+        display: inline-block;
       }
     }
     &:hover, &.current{
@@ -408,9 +410,7 @@ input[type=checkbox].check-box {
       .link{
         color: #ababab;
         i[class*="icon-"]::before{
-          font-size: 32px;
           color: white;
-          margin-right: 16px;
         }
       }
       &:hover, &.current{
@@ -563,6 +563,7 @@ input[type=checkbox].check-box {
 .user-icon{
   width: 54px;
   height: 54px;
+  flex: 0 0 auto;
   border-radius: 100%;
   display: flex;
   align-items: center;
@@ -721,25 +722,20 @@ nav.pagination{
       justify-content: start;
     }
     .arrow:before{
-      color: white;
       font-size: 32px;
     }
     a{
-      color: white;
+      color: $text-dark;
     }
   }
 }
 
 .main-menu{
   width: 290px;
-  margin-left: -290px;
   background: $bg-dark;
   flex: 0 0 auto;
-  transition: all .25s ease;
   @include mq-up(md){
     width: 240px;
-    margin-left: -240px;
-    transition: none;
   }
   .user-info{
     margin-bottom: 40px;
@@ -791,9 +787,9 @@ nav.pagination{
       align-items: center;
       justify-content: space-between;
       margin-bottom: 16px;
-      .main-contents-title{
-        color: $text-dark;
-      }
+    }
+    .main-contents-title{
+      color: $text-dark;
     }
   }
   .sub-contents{
@@ -844,15 +840,24 @@ nav.pagination{
   }
 }
 
-#body.menu-open{
+#body.menu-close{
   .main-menu{
+    width: 73px;
     margin-left: 0;
-  }
-  .main-col{
-    margin-right: -290px;
-    @include mq-up(md){
-      margin-right: 0;
+    transition: all .25s ease;
+    label{
+      display: none;
     }
+    .user-info{
+      padding-left: 18px;
+    }
+  }
+  .menu-btn-wrap{
+    text-align: center;
+    padding: 0;
+  }
+  .copyright{
+    display: none;
   }
 }
 
