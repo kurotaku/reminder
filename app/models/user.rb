@@ -35,4 +35,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable, :trackable
 
   has_many :stores, dependent: :destroy
+
+  validates :password, password: true
 end

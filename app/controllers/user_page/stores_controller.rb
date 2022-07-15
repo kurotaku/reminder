@@ -13,7 +13,7 @@ module UserPage
       if @store.save
         redirect_to user_page_store_path(@store), notice: t('.success')
       else
-        lash.now[:error] = t('.error')
+        flash.now[:error] = t('.error')
         render :new
       end
     end
