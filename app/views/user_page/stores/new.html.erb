@@ -1,0 +1,14 @@
+<nav class="main-header">
+  <h1 class="main-header-title"><%= link_to t('activerecord.models.store'), user_page_stores_path %><i class="icon-right_arrow arrow"></i><%= t('activerecord.models.store') %>新規作成</h1>
+</nav>
+
+<div class="main-contents">
+  <h2 class="main-contents-title mb-3"><%= t('activerecord.models.store') %>情報</h2>
+
+  <%= form_with(model: @store, url: user_page_stores_path, html: { method: :post, class: 'form-default', data: { turbo: false } }) do |f| %>
+    
+    <%= render 'form', f: f %>
+
+    <p class="text-center"><%= f.submit t('common.create'), class: 'btn btn-primary' %></p>
+  <% end %>
+</div>

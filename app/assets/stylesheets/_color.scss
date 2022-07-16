@@ -1,0 +1,42 @@
+$black: #232324;
+$bg-dark: #2C4F68;
+$bg-light: #F5F6F9;
+$bg-warning-light: #FFFEFA;
+$primary: #32ABD6;
+$success: #00CEB5;
+$danger: #E1544B;
+$danger-dark: #8D3737;
+$warning: #DB9F58;
+$gray: #B4B4B4;
+$text-dark: #2C4F68;
+$text-light: #9C9C9C;
+$border-gray: #ECECEC;
+
+.text-white{
+  color: white !important;
+}
+.text-dark{
+  color: $text-dark !important;
+}
+.text-light{
+  color: $text-light !important;
+}
+.text-primary{
+  color: $primary !important;
+}
+.text-danger{
+  color: $danger !important;
+}
+
+.bg-white{
+  background-color: white;
+}
+.bg-dark{
+  background-color: $bg-dark;
+}
+.bg-light{
+  background-color: $bg-light;
+}
+.bg-primary{
+  background-color: $primary;
+}

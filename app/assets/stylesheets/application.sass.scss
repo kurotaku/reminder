@@ -1,0 +1,874 @@
+// Entry point for your Sass build
+@import 'reset';
+@import 'text';
+@import 'color';
+@import 'spacing';
+@import 'display';
+@import 'icon-style';
+ /*--------------------------------------------------------------
+####### Reset #######
+--------------------------------------------------------------*/
+html{
+  font-size: 62.5%;
+}
+body{
+  font-family: 'Roboto', sans-serif;
+  line-height: 1;
+}
+
+*{
+  word-break: break-all;
+}
+
+button{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+}
+
+input[type="submit"]{
+  outline: 0;
+}
+
+iframe{
+  border: 0;
+}
+
+ul, menu, dir {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 0;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+  -webkit-padding-start: 0;
+  padding: 0;
+}
+
+p{
+  line-height: 1.4;
+}
+
+/*--------------------------------------------------------------
+####### Library Override #######
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+####### Breakpoints #######
+--------------------------------------------------------------*/
+// min-width
+$breakpoint-up: (
+  'sm': 'screen and (min-width: 400px)',
+  'md': 'screen and (min-width: 768px)',
+  'lg': 'screen and (min-width: 1000px)',
+  'xl': 'screen and (min-width: 1200px)',
+) !default;
+
+// max-width
+$breakpoint-down: (
+  'sm': 'screen and (max-width: 399px)',
+  'md': 'screen and (max-width: 767px)',
+  'lg': 'screen and (max-width: 999px)',
+  'xl': 'screen and (max-width: 1199px)',
+) !default;
+
+@mixin mq-up($breakpoint: md) {
+  @media #{map-get($breakpoint-up, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin mq-down($breakpoint: md) {
+  @media #{map-get($breakpoint-down, $breakpoint)} {
+    @content;
+  }
+}
+
+/*--------------------------------------------------------------
+####### Utility #######
+--------------------------------------------------------------*/
+.roboto{
+  font-family: 'Roboto Condensed', sans-serif !important;
+}
+
+.w-100{
+  width: 100%;
+}
+.w-50{
+  width: 50%;
+}
+.w-25{
+  width: 25%;
+}
+
+.nowrap{
+  white-space: nowrap;
+}
+
+/*--------------------------------------------------------------
+####### Components #######
+--------------------------------------------------------------*/
+/*=============================
+    Button
+=============================== */
+.btn{
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 100px;
+  min-width: 96px;
+  padding: 8px;
+  white-space: nowrap;
+  border-width: 1px;
+  border-style: solid;
+  cursor: pointer;
+  &:disabled{
+    cursor: not-allowed;
+  }
+}
+
+.btn-lg{
+  font-size: 1.4rem;
+  width: 100%;
+  border-radius: 4px;
+  padding: 16px;
+}
+.btn-sm{
+  font-size: 1.2rem;
+  min-width: 96px;
+  padding: 8px 16px;
+}
+
+.btn-primary{
+  border-color: $primary;
+  background-color: $primary;
+  &:disabled{
+    border-color: $gray;
+    background-color: $gray;
+  }
+}
+
+.btn-link{
+  border: 0;
+  text-decoration: underline;
+  color: $primary;
+  padding: 0;
+  min-width: inherit;
+}
+
+.btn-outline-primary{
+  border-color: $primary;
+  background-color: white;
+  color: $primary;
+}
+
+.btn-outline-secondary{
+  border-color: $text-light;
+  background-color: white;
+  color: $text-light;
+}
+
+.btn-outline-danger{
+  border-color: $danger;
+  background-color: white;
+  color: $danger;
+}
+
+.btn-outline-white{
+  border-color: white;
+  background-color: transparent;
+  color: white;
+}
+
+.icon-btn{
+  font-size: 24px;
+  text-decoration: none;
+  i[class*="icon-"]::before{
+    color: $text-dark;
+  }
+  &.danger{
+    i[class*="icon-"]::before{
+      color: $danger-dark;
+    }
+  }
+}
+
+.location-back-link{
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: $spacing-m;
+  i[class*="icon-"]::before{
+    font-size: 24px;
+    margin-right: $spacing-s;
+  }
+}
+
+/*=============================
+    Box
+=============================== */
+.box-wrap{
+  @include mq-up(md){
+    display: flex;
+    justify-content: space-between;
+    &>.box{
+      width: calc(50% - 8px);
+    }
+  }
+}
+
+.box{
+  background-color: #F5F5F5;
+  border-radius: 4px;
+  padding: 16px 8px;
+  border-width: 1px;
+  border-style: solid;
+  @include mq-up(md){
+    padding: 16px;
+  }
+  .box-title-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .box-title{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: $text-light;
+    margin-bottom: 8px;
+    @include mq-up(md){
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.narrow-box{
+  max-width: 690px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.box-bordered{
+  background-color: white;
+  border-color: $border-gray;
+}
+
+/*=============================
+    Form
+=============================== */
+.form-group{
+  margin-bottom: 8px;
+  .unit{
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 8px;
+  }
+}
+.form-label{
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: $text-light;
+  margin-bottom: 8px;
+  display: block;
+}
+.form-label.required:after{
+  content: '必須';
+  display: inline-block;
+  padding: 4px;
+  border-radius: 4px;
+  background-color: $primary;
+  color: white;
+  font-size: 10px;
+  margin-left: 4px;
+}
+.form-label.optional:after{
+  content: '任意';
+  display: inline-block;
+  padding: 4px;
+  border-radius: 4px;
+  background-color: $gray;
+  color: white;
+  font-size: 10px;
+  margin-left: 4px;
+}
+.form-control{
+  width: 100%;
+  font-size: 1.6rem;
+  background-color: white;
+  border: 1px solid $border-gray;
+  border-radius: 4px;
+  color: black;
+  padding: 16px;
+  margin-bottom: 8px;
+  @include mq-up(md){
+    max-width: 460px;
+  }
+  &.half{
+    max-width: 280px;
+    display: inline-block;
+  }
+  &.quarter{
+    max-width: 140px;
+    display: inline-block;
+  }
+  &:disabled, &[readonly]{
+    background-color: #f0f0f4;
+    color: #a0aab4;
+    &:focus-visible{
+      outline: none;
+    }
+  }
+}
+
+
+::placeholder {
+  color: $text-light;
+}
+
+input[type=checkbox].check-box {
+  transform: scale(2);
+  margin-right: $spacing-m;
+}
+
+/*=============================
+    List
+=============================== */
+.icon-link-list{
+  list-style: none;
+  li{
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+    &:last-child{
+      margin-bottom: 0;
+    }
+    .link{
+      color: $text-dark;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      border-radius: 4px;
+      i[class*="icon-"]::before{
+        font-size: 32px;
+        color: $text-dark;
+        width: 48px;
+        text-align: center;
+        display: inline-block;
+      }
+    }
+    &:hover, &.current{
+      .link{
+        color: $primary;
+        i[class*="icon-"]::before{
+          color: $primary;
+        }
+      }
+    }
+    &.danger{
+      .link{
+        color: $danger-dark !important;
+        i[class*="icon-"]::before{
+          color: $danger-dark !important;
+        }
+      }
+      &:hover{
+        opacity: .7;;
+      }
+    }
+  }
+  &.bordered{
+    li{
+      border-bottom: 1px solid $border-gray;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+      &:last-child{
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+    }
+  }
+  &.dark{
+    li{
+      .link{
+        color: #ababab;
+        i[class*="icon-"]::before{
+          color: white;
+        }
+      }
+      &:hover, &.current{
+        background: inherit;
+        a{
+          color: white;
+        }
+      }
+      &.current i[class*="icon-"]::before{
+        color: $primary;
+      }
+    }
+    &.bordered{
+      li{
+        border-bottom: 1px solid #3C3C3C;
+      }
+    }
+  }
+}
+
+/*=============================
+    Definition List
+=============================== */
+.definition-list{
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  dt{
+    font-size: 1.2rem;
+    font-weight: normal;
+    line-height: 1.6;
+    color: $text-light;
+    width: 25%;
+  }
+  dd{
+    font-size: 1.6rem;
+    font-weight: bold;
+    line-height: 1.6;
+    color: $text-dark;
+    width: 75%;
+    margin-bottom: 0;
+    .unit{
+      font-size: 1.2rem;
+      margin-left: 4px;
+      color: $text-light;
+    }
+  }
+}
+
+/*=============================
+    Table
+=============================== */
+.table-default{
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  thead{
+    th{
+      font-size: 1.2rem;
+      color: $text-light;
+      text-align: left;
+      padding-left: 8px;
+      padding-right: 8px;
+      padding-bottom: 8px;
+    }
+  }
+  tbody{
+    tr{
+      td{
+        font-size: 1.6rem;
+        font-weight: bold;
+        line-height: 1.4;
+        color: $text-dark;
+        padding: 8px;
+        @include mq-up(md){
+          font-size: 1.2rem;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+}
+
+.table-striped{
+  tbody{
+    tr{
+      &:nth-child(odd){
+        background-color: $bg-light;
+      }
+      &:nth-child(even){
+        background-color: white;
+      }
+    }
+  }
+}
+
+.table-bordered{
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  tr{
+    th, td{
+      border: 1px solid $text-light;
+      padding: $spacing-s;
+    }
+    th{
+      background-color: $bg-light;
+    }
+  }
+}
+
+.center-table{
+  margin: 0 auto;
+  tr{
+    td{
+      font-size: 1.4rem;
+      padding: 4px 8px;
+      @include mq-up(md){
+        padding: 8px;
+      }
+    }
+  }
+}
+
+/*=============================
+    Figure
+=============================== */
+.user-info{
+  display: flex;
+  align-items: center;
+}
+
+/*=============================
+    Icon
+=============================== */
+.icon-image{
+  width: 54px;
+  height: 54px;
+  border-radius: 100%;
+  @include mq-up(md){
+    width: 36px;
+    height: 36px;
+  }
+  &.big{
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.user-icon{
+  width: 54px;
+  height: 54px;
+  flex: 0 0 auto;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #C4C4C4;
+  i::before{
+    color: white;
+    font-size: 32px;
+  }
+  @include mq-up(md){
+    width: 36px;
+    height: 36px;
+    i::before{
+      font-size: 24px;
+    }
+  }
+  &.big{
+    width: 80px;
+    height: 80px;
+    i::before{
+      font-size: 52px;
+    }
+  }
+}
+
+/*=============================
+    Flash Message
+=============================== */
+.flash-message{
+  background-color: $success;
+  position: relative;
+  z-index: 10;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 1.4rem;
+  .close-btn{
+    cursor: pointer;
+  }
+  i[class*="icon-"]::before{
+    color: white;
+    font-size: 24px;
+  }
+  &.error{
+    background-color: $danger;
+  }
+}
+
+.notification{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: $bg-warning-light;
+  padding: 12px;
+  font-size: 14px;
+  text-decoration: none;
+  color: $warning;
+  border-radius: 4px;
+  border: 1px solid $warning;
+  .icon{
+    font-size: 32px;
+    margin-right: 4px;
+  }
+  .arrow{
+    margin-left: auto;
+    font-size: 32px;
+  }
+}
+
+/*=============================
+    Error Message
+=============================== */
+.error-message{
+  border: 1px solid $danger;
+  border-radius: 4px;
+  background-color: rgba(216, 144, 72, 0.08);
+  padding: 16px;
+  display: flex;
+  i[class^="icon-"], i[class*=" icon-"]{
+    &:before{
+      color: $danger;
+      font-size: 2.0rem;
+    }
+  }
+  .error-message-list{
+    li{
+      color: $danger;
+      font-size: 1.2rem;
+      letter-spacing: .1em;
+      font-weight: bold;
+      margin-bottom: 8px;
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+/*=============================
+    Page Nation
+=============================== */
+nav.pagination{
+  margin-left: auto;
+  display: flex;
+  &>span{
+    a, &.current, &.gap{
+      color: $text-dark;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 28px;
+      padding: 0 8px;
+      border: solid 1px $border-gray;
+      background-color: white;
+      border-radius: 200px;
+      margin-left: 8px;
+      text-decoration: none;
+    }
+    &.current{
+      color: $primary;
+    }
+    &:first-child{
+      a{
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+####### Layouts #######
+--------------------------------------------------------------*/
+.body-inner{
+  display: flex;
+  overflow-x: hidden;
+  @include mq-up(md){
+    overflow: inherit;
+  }
+}
+
+.main-header{
+  background: white;
+  text-align: center;
+  padding: 0 40px;
+  .main-header-title{
+    font-size: 18px;
+    font-weight: bold;
+    color: $text-dark;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include mq-up(md){
+      justify-content: start;
+    }
+    .arrow:before{
+      font-size: 32px;
+    }
+    a{
+      color: $text-dark;
+    }
+  }
+}
+
+.main-menu{
+  width: 290px;
+  background: $bg-dark;
+  flex: 0 0 auto;
+  @include mq-up(md){
+    width: 240px;
+  }
+  .user-info{
+    margin-bottom: 40px;
+    padding-left: 32px;
+    .user-name{
+      display: block;
+      margin-bottom: 4px;
+      color: white;
+      font-weight: bold;
+      font-size: 1.6rem;
+    }
+    .user-company-name{
+      color: $text-dark;
+      font-size: 1.2rem;
+      margin-bottom: 0;
+    }
+  }
+  .copyright{
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 80px;
+    margin-bottom: 0px;
+  }
+}
+
+.main-col{
+  width: 100%;
+  min-height: 100vh;
+  background: $bg-light;
+  transition: all .25s ease;
+  position: relative;
+  .main-contents-wrap{
+    display: flex;
+    min-height: calc(100% - 70px);
+    @include mq-down(md){
+      display: block;
+    }
+  }
+  .main-contents{
+    width: 100%;
+    min-height: calc(100vh - 70px);
+    padding: $spacing-m $spacing-s;
+    @include mq-up(md){
+      padding: 40px;
+    }
+    .main-contents-title-wrap{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .main-contents-title{
+      color: $text-dark;
+    }
+  }
+  .sub-contents{
+    width: 410px;
+    flex: 0 0 auto;
+    background-color: #27272B;
+    padding: $spacing-m;
+    @include mq-down(md){
+      width: 100%;
+    }
+  }
+}
+
+.main-contents-menu{
+  display: flex;
+  border-bottom: 1px solid $black;
+  margin-bottom: $spacing-m;
+  li{
+    list-style: none;
+    font-size: 1.4rem;
+    font-weight: bold;
+    a{
+      display: inline-block;
+      color: white;
+      text-decoration: none;
+      padding: $spacing-m;
+      padding-top: 0;
+    }
+    &.current{
+      border-bottom: 2px solid $primary;
+      a{
+        color: $primary;
+      }
+    }
+  }
+}
+
+.menu-btn-wrap{
+  padding: 0 20px;
+  text-align: right;
+  margin-bottom: 40px;
+  .menu-btn{
+    font-size:40px;
+    cursor: pointer;
+    &::before{
+      color: white;
+    }
+  }
+}
+
+#body.menu-close{
+  .main-menu{
+    width: 73px;
+    padding-top: 20px;
+    margin-left: 0;
+    transition: all .25s ease;
+    label{
+      display: none;
+    }
+    .user-info{
+      padding-left: 18px;
+    }
+  }
+  .menu-btn-wrap{
+    text-align: center;
+    padding: 0;
+  }
+  .copyright{
+    display: none;
+  }
+}
+
+.center-contents-wrap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center-contents{
+  height: auto;
+  min-width: 360px;;
+}
