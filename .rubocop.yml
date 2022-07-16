@@ -62,6 +62,17 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Exclude:
     - 'lib/tasks/auto_annotate_models.rake'
+    - 'db/schema.rb'
+    - 'config/routes.rb'
+    - "Rakefile"
+    - "**/*.rake"
+    - "spec/**/*.rb"
+    - "Gemfile"
+    - "Guardfile"
+    - "config/environments/*.rb"
+    - "config/routes.rb"
+    - "config/routes/**/*.rb"
+    - "*.gemspec"
 
 Metrics/CyclomaticComplexity:
   Max: 10

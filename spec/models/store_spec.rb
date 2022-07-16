@@ -24,5 +24,26 @@
 require 'rails_helper'
 
 RSpec.describe Store, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let!(:store) { create(:store) }
+
+  describe '関連モデルについて' do
+    it { expect(described_class.reflect_on_association(:user).macro).to eq(:belongs_to) }
+  end
+
+  describe 'バリデーション' do
+    # 半角数字10〜11桁（ハイフンなし）でないとエラー
+    describe ':phone' do
+      it 'ハイフンがあるとエラー' do
+        store = build(:store, phone: '03-1234-5678')
+        store.valid?
+        expect(store.errors[:phone]).to include('はハイフン無しの半角数字10〜11桁で入力してください')
+      end
+
+      it '9桁だとエラー' do
+        store = build(:store, phone: '0' * 9)
+        store.valid?
+        expect(store.errors[:phone]).to include('はハイフン無しの半角数字10〜11桁で入力してください')
+      end
+    end
+  end
 end

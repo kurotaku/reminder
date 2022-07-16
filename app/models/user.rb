@@ -37,4 +37,9 @@ class User < ApplicationRecord
   has_many :stores, dependent: :destroy
 
   validates :password, password: true
+  validates :name,
+            :account_id,
+            :email,
+            :password,
+            presence: true
 end

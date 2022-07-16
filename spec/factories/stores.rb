@@ -23,8 +23,11 @@
 #
 FactoryBot.define do
   factory :store do
-    user { nil }
-    name { 'MyString' }
-    ulid { 'MyString' }
+    user { create(:user) }
+    name { 'テスト店舗' }
+    ulid { SecureRandom.hex(13) }
+    phone { '0312345678' }
+    postcode { '1234567' }
+    address { '某所' }
   end
 end

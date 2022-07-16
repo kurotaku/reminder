@@ -31,5 +31,61 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let!(:user) { create(:user) }
+
+  describe 'deviseのモジュールについて' do
+    subject { described_class.devise_modules }
+    it { is_expected.to include(:database_authenticatable, :rememberable, :recoverable, :registerable, :validatable) }
+  end
+
+  describe '関連モデルについて' do
+    it { expect(described_class.reflect_on_association(:stores).macro).to eq(:has_many) }
+  end
+
+  describe 'バリデーション' do
+    describe ':name' do
+      it '空の場合はエラーになること' do
+        user = build(:user, name: nil)
+        user.valid?
+        expect(user.errors[:name]).to include('を入力してください')
+      end
+    end
+
+    describe ':account_id' do
+      it '空の場合はエラーになること' do
+        user = build(:user, account_id: nil)
+        user.valid?
+        expect(user.errors[:account_id]).to include('を入力してください')
+      end
+    end
+
+    describe ':email' do
+      it '空の場合はエラーになること' do
+        user = build(:user, email: nil)
+        user.valid?
+        expect(user.errors[:email]).to include('を入力してください')
+      end
+    end
+
+    # 半角英数字6文字以上100文字以下でないとエラー
+    describe ':password' do
+      it '空の場合はエラーになること' do
+        user = build(:user, password: nil)
+        user.valid?
+        expect(user.errors[:password]).to include('を入力してください')
+      end
+
+      it '5文字だとエラーになること' do
+        user = build(:user, password: 'a' * 5)
+        user.valid?
+        expect(user.errors[:password]).to include('は半角英数字6文字以上100文字以下にしてください')
+      end
+
+      it '半角英数字でないとエラー' do
+        user = build(:user, password: 'あいうえお')
+        user.valid?
+        expect(user.errors[:password]).to include('は半角英数字6文字以上100文字以下にしてください')
+      end
+    end
+  end
 end
