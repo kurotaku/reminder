@@ -74,6 +74,10 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :request
 
   config.include ActiveJob::TestHelper
+
+  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f } # support directoryをrequire
+  config.include RequestSpecHelper, type: :request # type: :requestのときにRequestHelperをinclude
+
   config.before(:all) do
     FactoryBot.reload
   end

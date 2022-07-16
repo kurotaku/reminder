@@ -28,4 +28,7 @@ class Store < ApplicationRecord
 
   validates :phone, allow_nil: false, uniqueness: { scope: :id, message: 'はすでに登録済みです' }, phone_number: true
   validates :postcode, postcode: true
+  validates :name,
+            :phone,
+            presence: true
 end
