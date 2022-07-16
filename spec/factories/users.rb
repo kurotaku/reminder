@@ -30,5 +30,10 @@
 #
 FactoryBot.define do
   factory :user do
+    sequence(:email) { |n| "user#{n}@test.com" }
+    password { 'password' }
+    name { 'テスト太郎' }
+    account_id { |n| "testuser#{n}" }
+    confirmed_at { Time.zone.now }
   end
 end

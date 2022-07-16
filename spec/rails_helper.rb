@@ -5,6 +5,9 @@ require_relative '../config/environment'
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
+require 'devise'
+require 'factory_bot'
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -61,4 +64,21 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :view
+  config.include FactoryBot::Syntax::Methods
+
+  # Required for device login.
+  # FYI: https://github.com/heartcombo/devise/wiki/How-To:-sign-in-and-out-a-user-in-Request-type-specs-(specs-tagged-with-type:-:request)#1-simple-approach
+  config.include Devise::Test::IntegrationHelpers, type: :request
+
+  config.include ActiveJob::TestHelper
+
+  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f } # support directoryをrequire
+  config.include RequestSpecHelper, type: :request # type: :requestのときにRequestHelperをinclude
+
+  config.before(:all) do
+    FactoryBot.reload
+  end
 end
