@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+    models:
+      customer: 顧客
+    attributes:
+      customer:
+        family_name: 氏名(姓)
+        first_name: 氏名(名)
+        store: 店舗
+        store_id: 店舗
+        phone: 電話番号
+        email: Email
+        register_status: 登録状況
+        line_status: LINE連携
+  enums:
+    customer:
+      register_status:
+        unregistered: 未登録
+        registered: 登録済み
+      line_status:
+        unregistered: 未連携
+        registered: 連携済み
