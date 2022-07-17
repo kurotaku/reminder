@@ -4,7 +4,7 @@ class CreateStores < ActiveRecord::Migration[7.0]
       t.references :user, null: false, foreign_key: true
       t.string :name
       t.string :ulid
-      t.string :phone
+      t.string :phone, null: false, default: ""
       t.string :postcode
       t.string :address
 

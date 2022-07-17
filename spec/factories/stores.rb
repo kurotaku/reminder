@@ -5,7 +5,7 @@
 #  id         :bigint           not null, primary key
 #  address    :string(255)
 #  name       :string(255)
-#  phone      :string(255)
+#  phone      :string(255)      default(""), not null
 #  postcode   :string(255)
 #  ulid       :string(255)
 #  created_at :datetime         not null
