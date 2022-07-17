@@ -15,6 +15,7 @@
         <th><%= t('activerecord.attributes.store.phone') %></th>
         <th><%= t('activerecord.attributes.store.postcode') %></th>
         <th><%= t('activerecord.attributes.store.address') %></th>
+        <th></th>
       </thead>
       <tbody>
         <% @stores.each do |store| %>
@@ -23,6 +24,7 @@
             <td><%= store.display_phone %></td>
             <td><%= store.display_postcode %></td>
             <td><%= store.address %></td>
+            <td><%= link_to '店舗ページへ', store_page_dashboard_path(store_ulid: store.ulid), class: 'btn btn-link' %></td>
           </tr>
         <% end %>
       </tbody>
