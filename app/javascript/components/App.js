@@ -1,12 +1,20 @@
 import React from 'react'
-// import { Switch, Route, Link } from 'react-router-dom'
-// import styled from 'styled-components'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Customer from './pages/Customer';
+import Dashboard from './pages/Dashboard';
 
-function App() {
+const App = () => {
   return (
-    <>
-      <div>this is from App.js</div>
-    </>
+    <Router>
+      <Routes>
+        <Route exact path="/:store_ulid" element={<Dashboard />} />
+        <Route exact path="/:store_ulid/customers/*" element={<Customer />} />
+      </Routes>
+    </Router>
   )
 }
 export default App

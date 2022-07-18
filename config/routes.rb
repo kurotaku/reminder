@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   end
 
   namespace :store_page, path: ':store_ulid' do
-    resource :dashboard, only: %w[show], controller: 'dashboard'
+    resource :dashboard, only: %w[show], controller: 'pages', path: '/'
+    resources :customers, controller: 'pages'
   end
 
   namespace :user_page, path: 'user' do
