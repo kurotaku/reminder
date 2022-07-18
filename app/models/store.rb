@@ -26,6 +26,8 @@ class Store < ApplicationRecord
 
   belongs_to :user
 
+  has_many :customers, dependent: :destroy
+
   validates :phone, allow_nil: false, uniqueness: { scope: :id, message: 'はすでに登録済みです' }, phone_number: true
   validates :postcode, postcode: true
   validates :name,
