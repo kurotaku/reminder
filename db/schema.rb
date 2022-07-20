@@ -13,6 +13,7 @@
 ActiveRecord::Schema[7.0].define(version: 2022_07_17_170402) do
   create_table "customers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "store_id", null: false
+    t.string "number"
     t.string "first_name"
     t.string "family_name"
     t.string "phone", default: "", null: false
