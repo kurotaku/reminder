@@ -1,19 +1,11 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
-import Customer from './pages/Customer';
-import Dashboard from './pages/Dashboard';
+import { BrowserRouter as Router } from "react-router-dom";
+import Main from './Main';
 
 const App = () => {
   return (
     <Router>
-      <Routes>
-        <Route exact path="/:store_ulid" element={<Dashboard />} />
-        <Route exact path="/:store_ulid/customers/*" element={<Customer />} />
-      </Routes>
+      <Main />
     </Router>
   )
 }
