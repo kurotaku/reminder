@@ -13,12 +13,6 @@ const Wrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: start;
-    &>a{
-      color: #2C4F68;
-    }
-    &>.arrow:before{
-      font-size: 32px;
-    }
   }
 `
 
