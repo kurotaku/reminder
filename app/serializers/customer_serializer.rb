@@ -22,14 +22,18 @@
 #
 #  fk_rails_...  (store_id => stores.id)
 #
-FactoryBot.define do
-  factory :customer do
-    store { nil }
-    first_name { 'MyString' }
-    last_name { 'MyString' }
-    phone { 'MyString' }
-    email { 'MyString' }
-    register_status { 1 }
-    line_status { 1 }
+class CustomerSerializer < BaseSerializer
+  attributes %i[id family_name first_name full_name number phone display_phone email register_status line_status]
+
+  def full_name
+    "#{object.family_name} #{object.first_name}"
+  end
+
+  def register_status
+    object.register_status_i18n
+  end
+
+  def line_status
+    object.line_status_i18n
   end
 end

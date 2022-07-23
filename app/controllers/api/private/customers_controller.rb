@@ -3,7 +3,7 @@ module Api
     class CustomersController < BaseController
       def index
         customers = @current_company.customers
-        render json: customers
+        render json: customers, each_serializer: CustomerSerializer
       end
 
       def create

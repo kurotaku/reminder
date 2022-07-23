@@ -4,6 +4,7 @@ ja:
       customer: 顧客
     attributes:
       customer:
+        number: 顧客番号
         family_name: 氏名(姓)
         first_name: 氏名(名)
         store: 店舗

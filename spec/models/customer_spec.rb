@@ -6,9 +6,10 @@
 #  email           :string(255)
 #  family_name     :string(255)
 #  first_name      :string(255)
-#  line_status     :integer          default(10), not null
+#  line_status     :integer          default("unregistered"), not null
+#  number          :string(255)
 #  phone           :string(255)      default(""), not null
-#  register_status :integer          default(10), not null
+#  register_status :integer          default("unregistered"), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  store_id        :bigint           not null

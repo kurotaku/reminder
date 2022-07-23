@@ -48,6 +48,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 
+gem 'active_model_serializers'
 gem 'dotenv-rails'
 gem 'draper'
 gem 'enum_help'
