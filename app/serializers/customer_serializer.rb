@@ -23,7 +23,7 @@
 #  fk_rails_...  (store_id => stores.id)
 #
 class CustomerSerializer < BaseSerializer
-  attributes %i[id family_name first_name full_name phone display_phone email register_status line_status]
+  attributes %i[id family_name first_name full_name number phone display_phone email register_status line_status]
 
   def full_name
     "#{object.family_name} #{object.first_name}"
