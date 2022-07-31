@@ -36,7 +36,7 @@ module Api
 
       def customer_params
         # FIXME: 仕様が固まったら受け付けるカラムは1つ1つ定義する
-        params.require(:custome).permit(Customer.column_names.map(&:to_sym))
+        params.require(:customer).permit(Customer.column_names.map(&:to_sym))
       end
     end
   end

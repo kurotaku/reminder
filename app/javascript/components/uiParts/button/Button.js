@@ -1,32 +1,31 @@
-import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { StoreUlid } from '../../Main'
+import styled from 'styled-components'
 
-const style = {
-  display: "inline-block",
-  color: "white",
-  textDecoration: "none",
-  textAlign: "center",
-  fontWeight: "bold",
-  fontSize: "1.2rem",
-  borderRadius: "100px",
-  minWidth: "96px",
-  padding: "8px",
-  whiteSpace: "nowrap",
-  borderWidth: "1px",
-  borderStyle: "solid",
-  cursor: "pointer",
-  borderColor: "#32ABD6",
-  backgroundColor: "#32ABD6"
-}
+const Btn = styled.button`
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 100px;
+  min-width: 96px;
+  padding: 8px;
+  white-space: nowrap;
+  border-width: 1px;
+  border-style: solid;
+  cursor: pointer;
+  &:disabled{
+    cursor: not-allowed;
+  }
+`
 
-const Button = ({path, text}) => {
-  const storeUlid = useContext(StoreUlid)
-  return (
-    <Link to={'/' + storeUlid + path} style={style}>
-      {text}
-    </Link>
-  )
-}
+export const PrimaryBtn = styled(Btn)`
+  border-color: #32ABD6;
+  background-color: #32ABD6;
+`
 
-export default Button
+export const PrimaryLinkBtn = styled(Btn.withComponent(Link))`
+  border-color: #32ABD6;
+  background-color: #32ABD6;
+`

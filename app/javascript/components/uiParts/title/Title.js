@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
-import Button from '../button/Button'
+import { PrimaryLinkBtn } from '../button/Button'
+import { StoreUlid } from '../../Main'
 
 const Wrap = styled.div`
   display: flex;
@@ -10,10 +11,11 @@ const Wrap = styled.div`
 `
 
 const ContentTitle = ({title, buttonText, buttonPath}) => {
+  const storeUlid = useContext(StoreUlid)
   return (
     <Wrap>
       <h2>{title}</h2>
-      { (buttonText && buttonPath) ? <Button text={buttonText} path={buttonPath} /> : null}
+      { (buttonText && buttonPath) ? <PrimaryLinkBtn to={'/' + storeUlid + buttonPath}>{buttonText}</PrimaryLinkBtn> : null}
     </Wrap>
   )
 }
