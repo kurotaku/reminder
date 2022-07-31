@@ -6,14 +6,16 @@
     "@hotwired/turbo-rails": "^7.1.3",
     "axios": "^0.27.2",
     "esbuild": "^0.14.48",
+    "node-sass": "^7.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "sass": "^1.53.0",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "styled-reset": "^4.4.2"
   },
   "scripts": {
     "build:js": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --loader:.js=jsx",
-    "build:css": "sass ./app/assets/stylesheets/application.sass.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+    "build:css": "node-sass ./app/assets/stylesheets/ -o app/assets/builds/"
   }
 }

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :private do
-      resources :customers, only: %i[index]
+      resources :customers
     end
   end
 
