@@ -25,6 +25,13 @@
 class Customer < ApplicationRecord
   belongs_to :store
 
+  validates :phone, presence: true, uniqueness: { scope: :store_id, message: 'はすでに登録済みです' }, phone_number: true
+  validates :number, allow_nil: true, uniqueness: { scope: :store_id, message: 'はすでに登録済みです' }
+  
+  validates :family_name,
+            :register_status,
+            presence: true
+
   enum register_status: {
     unregistered: 10,
     registered: 20

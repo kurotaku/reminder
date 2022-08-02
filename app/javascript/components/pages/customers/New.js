@@ -40,14 +40,13 @@ const New = () => {
 
     axios.post('/api/private/customers', data)
     .then(resp => {
-      console.log(data)
       setCustomer({
         family_name: resp.data.family_name,
-        first_name: resp.data.first_name
+        first_name: resp.data.first_name,
+        number: resp.data.number,
+        phone: resp.data.phone,
       });
-      console.log('success');
       navigate('../');
-      
     })
     .catch(e => {
       console.log(e);
