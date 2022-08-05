@@ -16,7 +16,9 @@
 #
 # Indexes
 #
-#  index_customers_on_store_id  (store_id)
+#  index_customers_on_store_id             (store_id)
+#  index_customers_on_store_id_and_number  (store_id,number) UNIQUE
+#  index_customers_on_store_id_and_phone   (store_id,phone) UNIQUE
 #
 # Foreign Keys
 #
@@ -27,7 +29,7 @@ class Customer < ApplicationRecord
 
   validates :phone, presence: true, uniqueness: { scope: :store_id, message: 'はすでに登録済みです' }, phone_number: true
   validates :number, allow_nil: true, uniqueness: { scope: :store_id, message: 'はすでに登録済みです' }
-  
+
   validates :family_name,
             :register_status,
             presence: true

@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import Color from '../../const/Color';
 
 export const DefaultFormStyle = createGlobalStyle`
-  input{
+  input[type="text"]{
     background: ${Color.LIGHT_PRIMARY};
     border: 2px solid ${Color.LIGHT_PRIMARY};
     border-radius: 16px;
@@ -16,20 +16,20 @@ export const DefaultFormStyle = createGlobalStyle`
     max-width: 320px;
   }
 `
-const Wrap = styled.div`
-  margin-bottom: 32px;
-`
-
-const Label = styled.label`
-  font-size: 1.2rem;
-  color: ${Color.TEXT_LIGHT};
-  display: inline-block;
-  line-height: 1;
-  margin-bottom: 8px;
-  width: 100%;
-`
-
 export const FormGroup = ({label, children}) => {
+  const Wrap = styled.div`
+    margin-bottom: 32px;
+  `
+
+  const Label = styled.label`
+    font-size: 1.2rem;
+    color: ${Color.TEXT_LIGHT};
+    display: inline-block;
+    line-height: 1;
+    margin-bottom: 8px;
+    width: 100%;
+`
+
   return (
     <Wrap>
       <Label>{label}</Label><br />
@@ -37,3 +37,18 @@ export const FormGroup = ({label, children}) => {
     </Wrap>
   )
 }
+
+export const FieldErrorMessage = ({children}) => {
+  const Wrap = styled.p`
+    color: ${Color.DANGER};
+    font-size: 1.2rem;
+    margin-top: 8px;
+  `
+
+  return(
+    <Wrap>{children}</Wrap>
+  )
+}
+
+
+

@@ -22,6 +22,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_17_170402) do
     t.integer "line_status", default: 10, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["store_id", "number"], name: "index_customers_on_store_id_and_number", unique: true
+    t.index ["store_id", "phone"], name: "index_customers_on_store_id_and_phone", unique: true
     t.index ["store_id"], name: "index_customers_on_store_id"
   end
 
@@ -34,7 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_17_170402) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["id", "phone"], name: "index_stores_on_id_and_phone", unique: true
+    t.index ["phone"], name: "index_stores_on_phone", unique: true
     t.index ["user_id"], name: "index_stores_on_user_id"
   end
 

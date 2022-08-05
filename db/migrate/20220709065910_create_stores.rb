@@ -10,7 +10,7 @@ class CreateStores < ActiveRecord::Migration[7.0]
 
       t.timestamps
 
-      t.index [:id, :phone], unique: true
+      t.index [:phone], unique: true
     end
   end
 end

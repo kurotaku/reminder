@@ -11,6 +11,9 @@ class CreateCustomers < ActiveRecord::Migration[7.0]
       t.integer :line_status, null: false, default: 10
 
       t.timestamps
+      
+      t.index [:store_id, :number], unique: true
+      t.index [:store_id, :phone], unique: true
     end
   end
 end
