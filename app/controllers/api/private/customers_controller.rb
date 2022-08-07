@@ -15,6 +15,11 @@ module Api
         end
       end
 
+      def show
+        customer = @current_company.customers.find(params[:id])
+        render json: customer, serializer: CustomerSerializer
+      end
+
       def update
         customer = @current_company.customers.find(params[:id])
         if customer.update(customer_params)
