@@ -1,107 +1,83 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import MainTitle from '../../uiParts/main/MainTitle'
 import MainContainer from '../../uiParts/main/MainContainer'
 import Box from '../../uiParts/box/Box'
-import { FormGroup } from '../../uiParts/form/Form'
+import * as Form from '../../uiParts/form/Form'
+import { PrimarySubmit } from '../../uiParts/button/Button';
 import { StoreUlid } from '../../Main'
-import { DefaultFormStyle } from '../../uiParts/form/Form'
-import { PrimaryBtn } from '../../uiParts/button/Button'
 
 const New = () => {
   const storeUlid = useContext(StoreUlid);
   const navigate = useNavigate();
 
-  const initialize = {
-    family_name: '',
-    first_name: '',
-    number: '',
-    phone: '',
-  }
+  const schema = yup.object().required().shape({
+    familyName: yup.string().required('必須項目です'),
+    firstName: yup.string().required('必須項目です'),
+    Number: yup.string().matches(/^[0-9a-zA-Z-]+$/, '半角英数字とハイフン(-)のみ使用できます'),
+    Phone: yup.string().required('必須項目です').matches(/^[0-9]+$/, '半角数字のみ使用できます')
+  });
 
-  const [customer, setCustomer] = useState(initialize);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setCustomer({ ...customer, [name]: value });
-    console.log(customer);
-  };
-
-  const saveCustomer = () => {
-    var data = {
+  const onSubmit = (formData) => {
+    var params = {
       store_ulid: storeUlid,
-      family_name: customer.family_name,
-      first_name: customer.first_name,
-      number: customer.number,
-      phone: customer.phone,
+      family_name: formData.familyName,
+      first_name: formData.firstName,
+      number: formData.Number,
+      phone: formData.Phone,
     };
 
-    axios.post('/api/private/customers', data)
+    axios.post('/api/private/customers', params)
     .then(resp => {
-      console.log(data)
-      setCustomer({
-        family_name: resp.data.family_name,
-        first_name: resp.data.first_name
-      });
-      console.log('success');
       navigate('../');
-      
     })
     .catch(e => {
       console.log(e);
     });
   }
+
   return (
     <>
-      <DefaultFormStyle />
+      <Form.DefaultFormStyle />
       <MainTitle>
         <Link to={'../'}>顧客管理</Link><i className="icon-right_arrow arrow"></i>新規追加
       </MainTitle>
       <MainContainer>
         <Box>
-          <FormGroup label="氏名(姓)">
-            <input
-              type="text"
-              required={true}
-              name="family_name"
-              placeholder="山田"
-              onChange={(e) => handleInputChange(e)}
-            />
-          </FormGroup>
+          <form onSubmit={handleSubmit(onSubmit)} className="form-default">
+            <Form.FormGroup label="氏名(姓)">
+              <input type="text" {...register('familyName')} placeholder="山田" />
+              {errors.familyName && <Form.FieldErrorMessage>{errors.familyName.message}</Form.FieldErrorMessage>}
+            </Form.FormGroup>
+            
+            <Form.FormGroup label="氏名(名)">
+              <input type="text" {...register('firstName')} placeholder="太郎" />
+              {errors.firstName && <Form.FieldErrorMessage>{errors.firstName.message}</Form.FieldErrorMessage>}
+            </Form.FormGroup>
 
-          <FormGroup label="氏名(名)">
-            <input
-              type="text"
-              required={true}
-              name="first_name"
-              placeholder="太郎"
-              onChange={(e) => handleInputChange(e)}
-            />
-          </FormGroup>
+            <Form.FormGroup label="顧客番号">
+              <input type="text" {...register('Number')} placeholder="0001" />
+              {errors.Number && <Form.FieldErrorMessage>{errors.Number.message}</Form.FieldErrorMessage>}
+            </Form.FormGroup>
 
-          <FormGroup label="顧客番号">
-            <input
-              type="text"
-              required={true}
-              name="number"
-              placeholder="0001"
-              onChange={(e) => handleInputChange(e)}
-            />
-          </FormGroup>
-
-          <FormGroup label="電話番号(ハイフンなし)">
-            <input
-              type="text"
-              required={true}
-              name="phone"
-              placeholder="08012345678"
-              onChange={(e) => handleInputChange(e)}
-            />
-          </FormGroup>
-          
-          <div style={{textAlign: 'center'}}><PrimaryBtn onClick={saveCustomer}>送信</PrimaryBtn></div>
+            <Form.FormGroup label="携帯番号(ハイフンなし)">
+              <input type="text" {...register('Phone')} placeholder="09012345678" />
+              {errors.Phone && <Form.FieldErrorMessage>{errors.Phone.message}</Form.FieldErrorMessage>}
+            </Form.FormGroup>
+            
+            <div style={{textAlign: 'center'}}><PrimarySubmit type="submit" /></div>
+          </form>
         </Box>
       </MainContainer>
     </>

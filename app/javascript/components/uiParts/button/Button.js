@@ -29,3 +29,7 @@ export const PrimaryLinkBtn = styled(Btn.withComponent(Link))`
   border-color: #32ABD6;
   background-color: #32ABD6;
 `
+export const PrimarySubmit = styled(Btn.withComponent('input'))`
+  border-color: #32ABD6;
+  background-color: #32ABD6;
+`

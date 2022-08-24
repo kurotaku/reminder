@@ -11,8 +11,13 @@ module Api
         if customer.save
           render json: customer
         else
-          render json: customer.errors, status: :unprocessable_entity
+          render json: { data: customer.errors }, status: :unprocessable_entity
         end
+      end
+
+      def show
+        customer = @current_company.customers.find(params[:id])
+        render json: customer, serializer: CustomerSerializer
       end
 
       def update

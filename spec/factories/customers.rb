@@ -16,7 +16,9 @@
 #
 # Indexes
 #
-#  index_customers_on_store_id  (store_id)
+#  index_customers_on_store_id             (store_id)
+#  index_customers_on_store_id_and_number  (store_id,number) UNIQUE
+#  index_customers_on_store_id_and_phone   (store_id,phone) UNIQUE
 #
 # Foreign Keys
 #

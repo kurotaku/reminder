@@ -14,8 +14,8 @@
 #
 # Indexes
 #
-#  index_stores_on_id_and_phone  (id,phone) UNIQUE
-#  index_stores_on_user_id       (user_id)
+#  index_stores_on_phone    (phone) UNIQUE
+#  index_stores_on_user_id  (user_id)
 #
 # Foreign Keys
 #
@@ -28,7 +28,7 @@ class Store < ApplicationRecord
 
   has_many :customers, dependent: :destroy
 
-  validates :phone, allow_nil: false, uniqueness: { scope: :id, message: 'はすでに登録済みです' }, phone_number: true
+  validates :phone, allow_nil: false, uniqueness: { message: 'はすでに登録済みです' }, phone_number: true
   validates :postcode, postcode: true
   validates :name,
             :phone,
